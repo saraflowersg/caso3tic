@@ -26,4 +26,19 @@ public class Solicitud {
         this.espacioDisco = Math.max(2, valor - (valor % 2));
 
     }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getNumProcesadores() {
+        return numProcesadores;
+    }
+
+    public int getNumMemoria() {
+        return numMemoria;
+    }
+
+    public int getEspacioDisco() {
+        return espacioDisco;
+    }
 }
