@@ -3,29 +3,88 @@ import java.util.ArrayList;
 
 public class Buzon {
 
-
-
     public ArrayList<Solicitud> solicitudes;
+    public int cantUsuarios;
 
-    public Buzon() {
+    public Buzon(int cantUsuarios) {
 
         this.solicitudes = new ArrayList<Solicitud>();
+        this.cantUsuarios = cantUsuarios;
     }
 
-    public static synchronized void disminuirUsuario() {
+    public synchronized void disminuirUsuario() {
 
-        Configuracion.cantUsuarios = Configuracion.cantUsuarios -1;
+        cantUsuarios -=1;
         
     }
 
-    public synchronized  void agregarSolicitud(Solicitud soli, Thread t) {
+    public synchronized Boolean noHaySolicitudesUsuarios() {
 
-        while (solicitudes.size() == 0) {
+        if (solicitudes.size() == 0 && cantUsuarios > 0) {
 
-                t.yield();
+            return true;
+        } else {
+
+            return false;
         }
-
-        
-        }
-
     }
+    public synchronized Boolean haySolicitudesUsuarios() {
+
+        if (solicitudes.size() > 0 || cantUsuarios > 0) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+    public synchronized Boolean haySolicitudes() {
+
+        if (solicitudes.size() > 0) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public synchronized Boolean isBuzonTerminado() {
+
+        if (solicitudes.size() == 0 && cantUsuarios == 0) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public synchronized  void agregarSolicitud(Solicitud soli) {
+
+
+        while (solicitudes.size() >= Configuracion.tam1) {
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        solicitudes.add(soli);
+        notify();
+
+        }
+
+    public synchronized Solicitud sacarSolicitud() {
+
+        Solicitud i = null;
+        if (solicitudes.size() > 0) {
+        i = solicitudes.remove(0);
+        notify();
+        }
+        return i;
+    }
+
+}
