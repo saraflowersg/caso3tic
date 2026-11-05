@@ -1,0 +1,10 @@
+cantUsuarios=2
+valorBase=2
+cantGestores=2
+tam1=5
+tam2=5
+procesadores=8
+capacidadMemoria=16
+tamPagina=4
+capacidadAlmacenamiento=2
+tamBloque=4

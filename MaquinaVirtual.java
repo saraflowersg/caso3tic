@@ -1,5 +1,5 @@
-import controladores.controladorAlmacenamiento;
-import controladores.controladorMemoria;
+import controladores.ControladorAlmacenamiento;
+import controladores.ControladorMemoria;
 import controladores.ControladorProcesadores;
 
 public class MaquinaVirtual extends Thread {
@@ -7,15 +7,15 @@ public class MaquinaVirtual extends Thread {
     // Los static son compartidos por todas las MVs
     private static ZonaEspera zonaEspera;
     private static ControladorProcesadores ctrlProcesador;
-    private static controladorMemoria ctrlMemoria;
-    private static controladorAlmacenamiento ctrlAlmacenamiento;
+    private static ControladorMemoria ctrlMemoria;
+    private static ControladorAlmacenamiento ctrlAlmacenamiento;
     private static int activas = 0;// Maquinas Virtuales que no han terminado su ejecución
 
     private Solicitud solicitud;
     private String id;
 
     public static void configurar(ZonaEspera zona, ControladorProcesadores procesador,
-                                  controladorMemoria memoria, controladorAlmacenamiento almacenamiento) {
+                                  ControladorMemoria memoria, ControladorAlmacenamiento almacenamiento) {
         zonaEspera = zona;
         ctrlProcesador = procesador;
         ctrlMemoria = memoria;

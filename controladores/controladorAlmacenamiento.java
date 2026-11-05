@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class controladorAlmacenamiento {
+public class ControladorAlmacenamiento {
 
     private static long KIB_POR_GIB = 1024L * 1024L;
 
@@ -36,7 +36,7 @@ public class controladorAlmacenamiento {
 
     private int bloquesLibres;
 
-    public controladorAlmacenamiento(double capacidadAlmacenamiento, int tamBloque) {
+    public ControladorAlmacenamiento(double capacidadAlmacenamiento, int tamBloque) {
         this.tamBloque = tamBloque;
         totalBloques = (int) (capacidadAlmacenamiento * KIB_POR_GIB/tamBloque);
         bloquesLibres = totalBloques;

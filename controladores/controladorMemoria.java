@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class controladorMemoria {
+public class ControladorMemoria {
 
     private static long KIB_POR_GIB = 1024L * 1024L;
     
@@ -37,7 +37,7 @@ public class controladorMemoria {
     private Map<String, List<Tramo>> asignaciones = new HashMap<>();
     private int paginasLibres;
 
-    public controladorMemoria(double capacidadMemoria, int tamPagina) {
+    public ControladorMemoria(double capacidadMemoria, int tamPagina) {
         this.tamPagina = tamPagina;
         totalPaginas = (int) (capacidadMemoria * KIB_POR_GIB/tamPagina);
         paginasLibres = totalPaginas;
